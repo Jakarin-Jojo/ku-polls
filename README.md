@@ -4,3 +4,4 @@ A web application for conducting polls at [Kasetsart University](https://www.ku.
 [Project Wiki](https://github.com/Jakarin-Jojo/ku-polls/wiki)  
 [Vision Statement](https://github.com/Jakarin-Jojo/ku-polls/wiki/Vision-Statement)  
 [Requirements](https://github.com/Jakarin-Jojo/ku-polls/wiki/Requirements)
+[[Iteration 1]]
