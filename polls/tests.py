@@ -141,3 +141,29 @@ class QuestionModelTests(TestCase):
         time = timezone.now() - datetime.timedelta(days=1)
         published_question = Question(pub_date=time)
         self.assertIs(published_question.is_published(), True)
+
+    def test_can_vote_with_future_questions(self):
+        """
+        can_vote() return False for questions whose pub_date is in the future.
+        """
+        time = timezone.now() + datetime.timedelta(days=20)
+        future_question = Question(pub_date=time)
+        self.assertIs(future_question.can_vote(), False)
+
+    def test_can_vote_with_question_is_in_the_voting_period(self):
+        """
+        can_vote() return True if the voting is current time in equal or after pub_date and not over end_date.
+        """
+        pub_date = timezone.now()
+        end_date = timezone.now() + datetime.timedelta(days=5)
+        question_is_in_the_voting_period = Question(pub_date=pub_date, end_date=end_date)
+        self.assertIs(question_is_in_the_voting_period.can_vote(), True)
+
+    def test_can_vote_with_old_question_which_over_end_date(self):
+        """
+        can_vote() return False if for the voting is currently time which over end_date.
+        """
+        pub_date = timezone.now() - datetime.timedelta(days=5)
+        end_date = timezone.now() - datetime.timedelta(days=3)
+        old_question = Question(pub_date=pub_date, end_date=end_date)
+        self.assertIs(old_question.can_vote(), False)
