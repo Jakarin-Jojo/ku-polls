@@ -125,3 +125,19 @@ class QuestionModelTests(TestCase):
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
+
+    def test_is_published_with_future_question(self):
+        """
+        is_published() return False for questions whose pub_date is in the future.
+        """
+        time = timezone.now() + datetime.timedelta(days=20)
+        future_question = Question(pub_date=time)
+        self.assertIs(future_question.is_published(), False)
+
+    def test_is_published_with_published_question(self):
+        """
+        is_published() return True if the current time is on or after questions publication time.
+        """
+        time = timezone.now() - datetime.timedelta(days=1)
+        published_question = Question(pub_date=time)
+        self.assertIs(published_question.is_published(), True)
