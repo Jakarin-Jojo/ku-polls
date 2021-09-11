@@ -22,6 +22,10 @@ class Question(models.Model):
         """Return: True if the current time is on or after questions publication time"""
         return timezone.now() >= self.pub_date
 
+    def can_vote(self):
+        """Return: True if the voting is currently in equal or after pub_date and not over end_date."""
+        return self.pub_date <= timezone.now() <= self.end_date
+
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
