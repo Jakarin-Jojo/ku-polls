@@ -18,6 +18,10 @@ class Question(models.Model):
     was_published_recently.boolean = True
     was_published_recently.short_description = 'Published recently?'
 
+    def is_published(self):
+        """Return: True if the current time is on or after questions publication time"""
+        return timezone.now() >= self.pub_date
+
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
