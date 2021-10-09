@@ -1,4 +1,4 @@
 # required packages
 coverage
-Django
-python-decouple
+django
+django-environ
