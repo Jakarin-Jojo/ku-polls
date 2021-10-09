@@ -1,14 +1,19 @@
+"""System management in the admin section."""
 from django.contrib import admin
 
 from .models import Choice, Question
 
 
 class ChoiceInline(admin.TabularInline):
+    """Setting a default Choice Online is 3 choices."""
+
     model = Choice
     extra = 3
 
 
 class QuestionAdmin(admin.ModelAdmin):
+    """Register Question model in the Admin page."""
+
     fieldsets = [
         (None, {'fields': ['question_text']}),
         ('Date information', {'fields': ['pub_date', 'end_date'], 'classes': ['collapse']}),

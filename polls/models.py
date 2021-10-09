@@ -1,3 +1,5 @@
+"""Question modeling management system."""
+
 import datetime
 from django.db import models
 from django.utils import timezone
@@ -5,11 +7,14 @@ from django.contrib import admin
 
 
 class Question(models.Model):
+    """A Question model that has a question, publication date, and end date."""
+
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     end_date = models.DateTimeField('end date')
 
     def __str__(self):
+        """Return: Display the text of questions."""
         return self.question_text
 
     @admin.display(
@@ -18,6 +23,7 @@ class Question(models.Model):
         description='Published recently ?'
     )
     def was_published_recently(self):
+        """Return: True if the question is published within 1 day."""
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
@@ -27,7 +33,7 @@ class Question(models.Model):
         description='IS PUBLISHED'
     )
     def is_published(self):
-        """Return: True if the current time is on or after questions publication time"""
+        """Return: True if the current time is on or after questions publication time."""
         return timezone.now() >= self.pub_date
 
     @admin.display(
@@ -41,9 +47,15 @@ class Question(models.Model):
 
 
 class Choice(models.Model):
+    """Choice model has two fields: the text of choice and a vote tally.
+
+    Each Choice is related to the question.
+    """
+
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
     def __str__(self):
+        """Return: Display choice text of each choice."""
         return self.choice_text

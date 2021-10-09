@@ -1,3 +1,4 @@
+"""URL generation system to link to other pages of the web app."""
 from django.urls import path
 
 from . import views
