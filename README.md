@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/Jakarin-Jojo/ku-polls.svg?branch=iteration2)](https://app.travis-ci.com/Jakarin-Jojo/ku-polls)
+[![codecov](https://codecov.io/gh/Jakarin-Jojo/ku-polls/branch/main/graph/badge.svg?token=AQ3UFPL4UG)](https://codecov.io/gh/Jakarin-Jojo/ku-polls)
 # ku-polls
 A web application for conducting polls at [Kasetsart University](https://www.ku.ac.th/th).
 # Project Documents
