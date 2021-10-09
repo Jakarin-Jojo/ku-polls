@@ -1,0 +1,5 @@
+# required packages
+coverage
+django~=3.2.7
+django-environ
+environ~=1.0

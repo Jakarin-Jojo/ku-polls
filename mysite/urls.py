@@ -1,4 +1,4 @@
-"""mysite URL Configuration
+"""mysite URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.shortcuts import redirect
 
 urlpatterns = [
+    path('', lambda request: redirect('polls/')),
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
 ]
