@@ -32,7 +32,10 @@ def detail(request, question_id):
     if not question.can_vote():
         messages.error(request, "This question is not allowed to vote.")
         return redirect(reverse('polls:index'))
-    return render(request, 'polls/detail.html', {'question': question})
+    context = {
+        "question": question,
+    }
+    return render(request, 'polls/detail.html', context)
 
 
 class ResultsView(generic.DetailView):
