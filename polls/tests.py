@@ -29,15 +29,15 @@ class QuestionDetailViewTests(TestCase):
                                           days=5)
         url = reverse('polls:detail', args=(future_question.id,))
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 302)
 
     def test_past_question(self):
         """Testing creates past questions to show detailed question text."""
-        past_question = create_question(question_text='Past Question.',
-                                        days=-5)
+        past_question = create_question(question_text='Past Question.', days=-5)
         url = reverse('polls:detail', args=(past_question.id,))
         response = self.client.get(url)
-        self.assertContains(response, past_question.question_text)
+        index_response = self.client.get(response.url)
+        self.assertContains(index_response, past_question.question_text, status_code=200)
 
 
 class QuestionIndexViewTests(TestCase):

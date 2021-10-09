@@ -11,7 +11,7 @@ class Question(models.Model):
 
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
-    end_date = models.DateTimeField('end date')
+    end_date = models.DateTimeField('end date', default=timezone.now)
 
     def __str__(self):
         """Return: Display the text of questions."""
