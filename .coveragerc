@@ -5,6 +5,6 @@ branch = True
 cover_pylib = False
 
 omit =
-    mysite/*
-    polls/init.py
-    polls/migrations/
+    polls/tests.py
+    polls/migrations/*
+    manage.py
