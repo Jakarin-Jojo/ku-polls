@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 from .models import Choice, Question
 
 
@@ -45,12 +45,14 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 
+@login_required(login_url='/accounts/login/')
 def vote(request, question_id):
     """Display the vote result page of selected questions.
 
     Return: Render to a detail page if If no choice is selected.
     Else Redirect to a vote result page.
     """
+    user = request.user
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
