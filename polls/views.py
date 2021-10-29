@@ -52,7 +52,6 @@ def vote(request, question_id):
     Return: Render to a detail page if If no choice is selected.
     Else Redirect to a vote result page.
     """
-    user = request.user
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])

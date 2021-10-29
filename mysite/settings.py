@@ -105,8 +105,7 @@ AUTHENTICATION_BACKENDS = [
     # username/password authentication
     'django.contrib.auth.backends.ModelBackend',
 ]
-LOGIN_REDIRECT_URL = '/polls/'    # ToDo app: use '/todo/'
-LOGOUT_REDIRECT_URL = 'some-existing-view'
+LOGIN_REDIRECT_URL = '/polls/'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
