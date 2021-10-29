@@ -68,6 +68,10 @@ class Choice(models.Model):
 
 
 class Vote(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    @property
+    def question(self):
+        """Get the question that this vote applies to."""
+        return self.choice.question

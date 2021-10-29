@@ -20,7 +20,7 @@ from django.shortcuts import redirect
 from mysite import views
 
 urlpatterns = [
-    path('', lambda request: redirect('polls/')),
+    path('', lambda request: redirect('signup/')),
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
