@@ -9,7 +9,15 @@
   {% endfor %}
 </div>
 {% endif %}
-
+{% if user.is_authenticated %}
+        <h2 style="color: black">Welcome, {{ user.first_name }}</h2>
+        <h2 style="color: red"><a href="{% url 'logout' %}" style="color: whitesmoke">Logout</a></h2>
+    {% else %}
+        <h2 style="color: black">If you want to vote Please <a href="{% url 'login' %}" style="color: dodgerblue">Login</a>
+        </h2>
+        <h2 style="color: olivedrab">Or you don't have account Please <a href="{% url 'signup' %}" style="color: saddlebrown">Sign up</a>
+        </h2>
+    {% endif %}
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}

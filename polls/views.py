@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Choice, Question, Vote
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -69,17 +70,18 @@ def vote(request, question_id):
             'error_message': "You didn't select a choice.",
         })
     else:
-        if question.vote_set.filter(user=user).exists():
-            vote = question.vote_set.get(user=user)
+        if user.vote_set.filter(user=user).exists():
+            vote = user.vote_set.get(user=user)
             vote.choice = selected_choice
             vote.save()
         else:
-             Vote.objects.create(user=user, choice=selected_choice)
+            Vote.objects.create(user=user, choice=selected_choice)
         logger.info(f"User {user.username} submit a vote for question {question.id} ")
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
 
 def get_client_ip(request):
     """Get the visitor’s IP address using request headers."""
