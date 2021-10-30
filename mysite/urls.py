@@ -21,9 +21,9 @@ from django.conf import settings
 from mysite import views
 
 urlpatterns = [
-    path('', lambda request: redirect('polls/')),
-    path('polls/', include('polls.urls')),
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('signup/', views.signup, name='signup'),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+                  path('', lambda request: redirect('polls/')),
+                  path('polls/', include('polls.urls')),
+                  path('admin/', admin.site.urls),
+                  path('accounts/', include('django.contrib.auth.urls')),
+                  path('signup/', views.signup, name='signup'),
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
