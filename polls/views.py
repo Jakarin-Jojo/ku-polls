@@ -7,6 +7,8 @@ from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Choice, Question, Vote
+from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
+from django.dispatch import receiver
 import logging
 
 logger = logging.getLogger(__name__)
@@ -56,8 +58,6 @@ def vote(request, question_id):
     Else Redirect to a vote result page.
     """
     user = request.user
-    logger.info("current user is", user.id, "login", user.username)
-    logger.info("Real name:", user.first_name, user.last_name)
     question = get_object_or_404(Question, pk=question_id)
 
     try:
@@ -91,3 +91,21 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+
+@receiver(user_logged_in)
+def on_login(user, request, **kwargs):
+    """Log a message at info level when the user is login."""
+    logger.info(f'IP: {get_client_ip(request)} {user} just logged in.')
+
+
+@receiver(user_logged_out)
+def on_logout(user, request, **kwargs):
+    """Log a message at info level when the user is logout."""
+    logger.info(f'IP: {get_client_ip(request)} {user.username} has logged out.')
+
+
+@receiver(user_login_failed)
+def login_fail(credentials, request, **kwargs):
+    """Log a message at the warning level when the user failed login."""
+    logger.warning(f"IP: {get_client_ip(request)} Fail to log in for {credentials['username']}")
