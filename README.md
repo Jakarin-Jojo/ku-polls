@@ -6,5 +6,6 @@ A web application for conducting polls at [Kasetsart University](https://www.ku.
 [Project Wiki](../../wiki/Home)  
 [Vision Statement](../../wiki/Vision%20Statement)  
 [Requirements](../../wiki/Requirements)  
-[Iteration 1](../../wiki/Iteration-1)  
-[Iteration 2](../../wiki/Iteration-2)  
+[Iteration 1](../../wiki/Iteration-1-Plan)  
+[Iteration 2](../../wiki/Iteration-2-Plan)  
+[Iteration 3](../../wiki/Iteration%203%20Plan)  

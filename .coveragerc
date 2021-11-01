@@ -7,4 +7,5 @@ cover_pylib = False
 omit =
     polls/tests.py
     polls/migrations/*
+    polls/user_auth_tests.py
     manage.py
