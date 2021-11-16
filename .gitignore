@@ -6,7 +6,7 @@ __pycache__/
 # C extensions
 *.so
 #
-polls/fixtures/*.json
+
 # Distribution / packaging
 .Python
 build/
